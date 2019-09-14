@@ -1,3 +1,6 @@
+#API keys
+twilio.api.js
+
 # Logs
 logs
 *.log

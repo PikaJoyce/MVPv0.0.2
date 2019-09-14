@@ -1,0 +1,31 @@
+{
+  "name": "mvpv0.0.2",
+  "version": "1.0.0",
+  "description": "## Back end rebuilt for my MVP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PikaJoyce/MVPv0.0.2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PikaJoyce/MVPv0.0.2/issues"
+  },
+  "homepage": "https://github.com/PikaJoyce/MVPv0.0.2#readme",
+  "devDependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.1",
+    "nodemon": "^1.19.2",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "twilio": "^3.34.0"
+  }
+}
