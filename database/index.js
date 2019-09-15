@@ -4,11 +4,11 @@ mongoose.connect(mongoURI, { useUnifiedTopology: true, useNewUrlParser: true });
 
 var db = mongoose.connection;
 
-db.on('error', function () {
+db.on('error', () => {
   console.log('mongoose connection error');
 });
 
-db.once('open', function () {
+db.once('open', () => {
   console.log('mongoose connected successfully');
 });
 
@@ -31,6 +31,18 @@ module.exports.addPhonenumber = (data, cb) => {
     } else {
       console.log("Successfully posted to db: ", result);
       cb(null, result)
+    }
+  })
+}
+
+module.exports.getPhonenumbers = (cb) => {
+  PhoneNumber.find((err, docs) => {
+    if (err) {
+      console.log("An error has occured getting phonenumber info: ", err);
+      cb(err, null);
+    } else {
+      console.log("data going to server! ", docs);
+      cb(null, docs);
     }
   })
 }

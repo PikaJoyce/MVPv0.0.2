@@ -14,7 +14,32 @@ const client = new twilio(auth.accountSid, auth.authToken);
 app.use(bodyParser.json());
 //app.use(express.static(__dirname + ' FILL_ME_IN'));
 
-app.listen(PORT, () => (console.log(`listening on port ${PORT}!`)));
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => (console.log(`listening on port ${PORT}!`)));
+}
+
+app.post('/phoneNumber', (req, res) => {
+  console.log('phoneNumber info', req.body)
+  let { info } = req.body
+  db.addPhonenumber(info, (err, result) => {
+    if (err) {
+      res.status(400).send({ err })
+    } else {
+      res.status(200).send('Added to DB')
+    }
+  })
+})
+
+app.get('/memes', (req, res) => {
+  db.getPhonenumbers((err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(400).send({ err });
+    }
+    console.log('result is in server', result);
+    res.status(200).send(result)
+  })
+})
 
 app.post('/memes', (req, res) => {
   let { name, message } = req.body
@@ -35,14 +60,20 @@ app.post('/memes', (req, res) => {
   // PUT IT HERE
 
   // Twilio test message
-  // client.messages
-  //   .create({
-  //     body: message,
-  //     from: '+14157459363',
-  //     to: phoneNumber
-  //   })
-  //   .then(message => console.log('text sent', message.sid))
-  //   .catch(err => console.error('cannot send message', err));
+  client.messages
+    .create({
+      body: message,
+      from: '+14157459363',
+      to: phoneNumber
+    })
+    .then(message => {
+      console.log('text sent', message)
+      res.status(200)
+    })
+    .catch(err => {
+      console.error('cannot send message', err)
+      res.status(400)
+    });
 })
 
 module.exports = app;
