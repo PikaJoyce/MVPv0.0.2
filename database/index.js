@@ -21,15 +21,14 @@ var phoneNumbersSchema = mongoose.Schema({
 var PhoneNumber = mongoose.model('PhoneNumber', phoneNumbersSchema);
 
 module.exports.addPhonenumber = (data, cb) => {
-  console.log("about to save phoneNumber to db", data)
   let info = new PhoneNumber(data);
 
   info.save(info, (err, result) => {
     if (err) {
-      console.log("An error as occured posting to db");
+      //console.log("An error as occured posting to db");
       cb(err, null)
     } else {
-      console.log("Successfully posted to db: ", result);
+      //console.log("Successfully posted to db: ", result);
       cb(null, result)
     }
   })
@@ -38,10 +37,10 @@ module.exports.addPhonenumber = (data, cb) => {
 module.exports.getPhonenumbers = (cb) => {
   PhoneNumber.find((err, docs) => {
     if (err) {
-      console.log("An error has occured getting phonenumber info: ", err);
+      //console.log("An error has occured getting phonenumber info: ", err);
       cb(err, null);
     } else {
-      console.log("data going to server! ", docs);
+      //console.log("data going to server! ", docs);
       cb(null, docs);
     }
   })
@@ -50,10 +49,10 @@ module.exports.getPhonenumbers = (cb) => {
 module.exports.findOne = (name, cb) => {
   PhoneNumber.findOne(name, (err, docs) => {
     if (err) {
-      console.log("An error has occured getting phonenumber info: ", err);
+      //console.log("An error has occured getting phonenumber info: ", err);
       cb(err, null);
     } else {
-      console.log("data located db! ", docs);
+      //console.log("data located db! ", docs);
       cb(null, docs);
     }
   })
