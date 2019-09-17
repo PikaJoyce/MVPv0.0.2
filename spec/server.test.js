@@ -30,5 +30,4 @@ describe('Server functional', () => {
       .send(testMsg)
       .expect({ success: true }, done);
   })
-
 })
