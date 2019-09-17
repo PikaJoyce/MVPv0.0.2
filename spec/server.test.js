@@ -9,7 +9,7 @@ describe('Server functional', () => {
       .expect(200, done);
   })
 
-  it('/phonenumbers POST phone numbers to the db', (done) => {
+  xit('/phonenumbers POST phone numbers to the db', (done) => {
     let info = {
       "name": "Andy",
       "phoneNumber": "+14159905511"
@@ -20,5 +20,15 @@ describe('Server functional', () => {
       .expect({ success: true }, done);
   })
 
+  it('/memes POST owofied messages to recipients', (done) => {
+    let testMsg = {
+      "name": "Maia",
+      "message": "Hi, I hope you feel better!"
+    }
+    request(app)
+      .post('/memes')
+      .send(testMsg)
+      .expect({ success: true }, done);
+  })
 
 })

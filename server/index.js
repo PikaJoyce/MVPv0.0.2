@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000
 
-const handleText = require('./owo')
+const owoText = require('./owo')
 
 // database
 const db = require('../database/index')
@@ -45,11 +45,12 @@ app.get('/memes', (req, res) => {
 
 app.post('/memes', (req, res) => {
   let { name, message } = req.body
-  let owoMsg = handleText(message);
+  let owoMsg = owoText(message);
 
   db.findOne({ name }, (err, result) => {
     if (err) {
       console.error('cannot get numbers', err);
+      res.status(400).send(err)
     } else {
       console.log('got info from database', result.phoneNumber);
       let phoneNumber = result.phoneNumber;
@@ -60,8 +61,8 @@ app.post('/memes', (req, res) => {
           to: phoneNumber
         })
         .then(message => {
-          console.log('text sent', message)
-          res.status(200).send(message)
+          console.log(`text sent ${message.body} to ${name}`)
+          res.status(200).send({ success: true })
         })
         .catch(err => {
           console.error('cannot send message', err)

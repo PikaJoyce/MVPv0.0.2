@@ -1,4 +1,4 @@
-const handleText = (text) => {
+const owoText = (text) => {
   let v = text;
   let faces = ["(・`ω´・)", ";;w;;", "owo", "UwU", ">w<", "^w^"];
 
@@ -22,4 +22,4 @@ const handleText = (text) => {
   return (v);
 }
 
-module.exports = handleText 
+module.exports = owoText 
