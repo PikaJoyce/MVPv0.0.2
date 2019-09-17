@@ -11,8 +11,8 @@ describe('Server functional', () => {
 
   xit('/phonenumbers POST phone numbers to the db', (done) => {
     let info = {
-      "name": "Andy",
-      "phoneNumber": "+14159905511"
+      "name": "Woody",
+      "phoneNumber": "+14151231234"
     }
     request(app)
       .post('/phoneNumber')
